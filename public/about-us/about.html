@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>About Us</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <style>
+        body {
+            /* background-color: white; */
+            background-color: rgb(255, 218, 225);
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 60px;
+        }
+
+        #container_us>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* text-align: center; */
+            width: 100%;
+        }
+
+        .authors {
+            margin: 0px 5%;
+        }
+
+        .authors>h3 {
+            padding-left: 32%;
+        }
+
+        #container_work {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 65%;
+            margin: 4% 5%;
+        }
+
+        .content-change {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            width: 60%;
+            margin: 0 20%;
+            letter-spacing: 1px;
+        }
+
+        .content-style {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>What We Do</h2>
+    <p class="content-style">Welcome to Memory Lane, where we embark on a journey through the annals of history,
+        providing you with a unique and immersive experience of major historical events that have shaped our world. From
+        the 1600s to the 2000s, we invite you to step back in time and witness the moments that defined nations,
+        cultures, and civilizations.
+        <br><br>
+        Memory Lane offers more than a nostalgic journey; it's an educational odyssey designed to provide a deep
+        understanding of historical events. Meticulously curated by historians and scholars, each event is accompanied
+        by insightful commentary that delves beyond the surface, offering context and significance. The platform
+        emphasizes the importance of understanding the "why" and "how" by placing events within their broader
+        historical, cultural, and social context. Exploring ripple effects. <br><br> Memory Lane traces the lasting
+        impact of events on politics, society, and culture. Uncovering untold stories and human narratives, the platform
+        goes beyond surface-level narratives. Through interactive learning tools, such as multimedia presentations and
+        timelines, users engage actively with historical content. <br><br> By fostering a community of like-minded
+        explorers, Memory Lane creates a space for discussions and shared insights. Every click on Memory Lane is an
+        opportunity for the casual explorer to uncover surprises, broaden their perspective, and gain a deeper
+        appreciation for the diverse tapestry of human history.
+    </p>
+    <div id="container_work"></div>
+    <h2>About Us</h2>
+    <div id="container_us"></div>
+    <script type="text/babel">
+        var destination1 = document.querySelector("#container_us");
+        var destination2 = document.querySelector("#container_work");
+
+        class Header extends React.Component {
+            render() {
+                var headingStyle = {
+                    fontFamily: "Sans",
+                    fontSize: "3rem",
+                    marginBottom: "50px"
+                }
+                return (<h1 style={headingStyle}>{this.props.title} </h1>)
+            }
+        }
+
+        class Content extends React.Component {
+            render() {
+                var contentStyle = {
+                    fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;",
+                    fontSize: "2.6rem",
+                    padding: "102px",
+                    backgroundColor: red
+                }
+                return (<p className="content-style" style={contentStyle}>Welcome to Memory Lane, where we embark on a journey through the annals of history, providing you with a unique and immersive experience of major historical events that have shaped our world. From the 1600s to the 2000s, we invite you to step back in time and witness the moments that defined nations, cultures, and civilizations.</p>)
+            }
+        }
+
+        class Person extends React.Component {
+            render() {
+                var personStyle = {
+                    // display: "inline-block",
+                    // margin : "10px",
+                    height: "300px",
+                    width: "300px",
+                    backgroundColor: "pink",
+                    borderRadius: "50%"
+                }
+
+                var nameStyle = {
+                    // display: "inline-block",
+                    fontFamily: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif",
+                    fontSize: "1.5rem",
+                    marginLeft: "5%",
+                }
+                return (<div className="authors"><img src={this.props.src} style={personStyle} alt={this.props.alt}></img><h3 style={nameStyle}>{this.props.name}</h3></div>)
+            }
+        }
+        ReactDOM.render(
+            <div>
+                <Person name="Gagan" src="./Gagan_SL.jpeg" alt="I am Gagan SL"></Person>
+                <Person name="Gagan" src="./Gagan_GP.png" alt="I am Gagan GP"></Person>
+                <Person name="Gagan" src="./Ernest.jpeg" alt="I aint Gagan, I'm Ernest"></Person>
+            </div>, destination1);
+
+        // ReactDOM.render(<div><Content></Content></div>,destination2);
+    </script>
+</body>
+
+</html>

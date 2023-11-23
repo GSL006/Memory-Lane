@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MongoDB Data Display</title>
+</head>
+<body>
+  <div id="data-container"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    // Fetch data from the server and display it on the HTML page
+    $(document).ready(() => {
+      $.get('http://localhost:8080/', (data) => {
+        const dataContainer = $('#data-container');
+        dataContainer.html('<h2>Data from MongoDB</h2>');
+
+        // Display the data as an unordered list
+        const dataList = $('<ul></ul>');
+        data.forEach(item => {
+          const listItem = `<li>${JSON.stringify(item)}</li>`;
+          dataList.append(listItem);
+        });
+
+        dataContainer.append(dataList);
+      });
+    });
+
+    $(document).ready(() => {
+  console.log('Document ready'); // Add this line
+
+  // Fetch data from the server and display it on the HTML page
+  $.get('http://localhost:3000/', (data) => {
+    console.log('Data received:', data); // Add this line
+
+    const dataList = $('#data-list');
+    dataList.empty();
+
+    data.forEach(item => {
+      const listItem = `<li>${JSON.stringify(item)}</li>`;
+      dataList.append(listItem);
+    });
+  });
+});
+  </script>
+</body>
+</html> -->

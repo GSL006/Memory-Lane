@@ -1,0 +1,331 @@
+@import "../node_modules/include-media/dist/_include-media.scss";
+
+$padding: 1rem;
+$scroll-corner: .3em;
+$scroll-handle-height-landscape: 6rem;
+$scroll-handle-height-portrait: 7rem;
+$scroll-width-desktop: 1024px;
+
+$breakpoints: (phone: 320px, tablet: 768px, desktop: $scroll-width-desktop);
+
+.wrapper {
+	margin: 0 0 -50px;
+	min-height: 100%;
+}
+
+.container {
+	padding-top: 0;
+}
+
+.footer, .push {
+	height: 50px;
+	line-height: 50px;
+}
+
+.cipher {
+	font-family: "spellbook";
+	font-style: normal;
+	font-weight: normal;
+	text-transform: uppercase;
+
+
+	&.h1 {
+		color: #000;
+		letter-spacing: .2em;
+		line-height: 88.8px;
+		margin: 0;
+		padding: 2em 0;
+		text-align: left;
+		text-orientation: upright;
+		top: 1.65em;
+		white-space: nowrap;
+		writing-mode: vertical-rl;
+	}
+
+	&+.cipher,
+	&:last-child {
+		transform: scaleX(-1);
+	}
+}
+
+.minor-push {
+	margin-bottom: 3em;
+}
+
+.major-push {
+	margin-bottom: 6em;
+}
+
+/**************************************/
+/*              HEADER                */
+/**************************************/
+
+
+.title {
+	font-family: "Freebooter Script";
+	letter-spacing: .2em;
+	margin-top: 0;
+}
+
+
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
+
+@keyframes open-scroll {
+	to {
+		top: 100%;
+	}
+}
+
+@keyframes roll-scroll {
+	from { background-position: 0 }
+}
+
+/* Inclusive and exclusive operators for a finer control over the intervals */
+// @include media(">phone", "<=tablet") {
+// 	width: 50%;
+// }
+
+/* Use ligatured operators if you fancy a slicker declaration */
+// @include media("≥phone", "≤tablet") {
+// 	line-height: 1.5;
+// }
+
+.scroll {
+	color: #000;
+	margin: $scroll-handle-height-portrait auto;
+	position: relative;
+	width: 100%;
+
+	@include media("landscape") {
+		margin-top: $padding + $scroll-handle-height-landscape;
+		width: $scroll-width-desktop;
+	}
+
+	.scroll-conceal {
+		background-color: #000;
+		left: 0;
+		z-index: 1;
+	}
+
+	.scroll-header,
+	.scroll-footer {
+		height: $scroll-handle-height-portrait;
+		position: fixed;
+		width: 100%;
+		z-index: 1;
+
+		@include media("landscape") {
+			height: $scroll-handle-height-landscape;
+			width: $scroll-width-desktop;
+		}
+	}
+
+	.scroll-top,
+	.scroll-content,
+	.scroll-bottom {
+		background-position: 0 0;
+		background-repeat: repeat-y;
+		position: relative;
+	}
+
+	.scroll-top,
+	.scroll-bottom {
+		background-image: url("../images/scrollbar.jpg");
+		background-size: 100%;
+		border-radius: $scroll-corner;
+		height: 100%;
+		z-index: 1;
+
+		.shadow {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 150%;
+			width: 100%;
+		}
+	}
+
+	.scroll-header {
+		top: 0;
+
+		.scroll-conceal {
+			height: 0;
+			width: 100%;
+
+			@include media("landscape") {
+				height: $padding;
+			}
+		}
+	}
+
+	.scroll-top {
+		background-position: 0 0;
+		top: -$scroll-corner;
+
+		.shadow {
+			// Permalink - use to edit and share this gradient:
+			// http://colorzilla.com/gradient-editor/#ffffff+30,000000+66&0+15,0.6+27,0.6+30,0+40,0.7+66,0.57+80,0+100
+			background: linear-gradient(to bottom,
+				rgba(255,255,255,0) 15%,
+				rgba(255,255,255,0.6) 27%,
+				rgba(255,255,255,0.6) 30%,
+				rgba(184,184,184,0) 40%,
+				rgba(0,0,0,0.7) 66%,
+				rgba(0,0,0,0.57) 80%,
+				rgba(0,0,0,0) 107% // >100 webkit bug
+			); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			height: 150%;
+		}
+	}
+
+	.scroll-view {
+		background-image: url("../images/scroll_seamless.jpg");
+		background-repeat: repeat-y;
+		background-size: 100%;
+		display: grid;
+		grid-template-columns: 8% 1fr 8%;
+		margin: -$scroll-corner 0; // to hide border radius of top and bottom.
+		overflow-x: hidden;
+		overflow-y: -moz-scrollbars-none;
+		z-index: 0;
+
+		@include media("landscape") {
+			width: $scroll-width-desktop;
+		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		.player {
+			clear: both;
+			filter: sepia(100%);
+			-webkit-mask-box-image: url("../images/vignette-mask.png") 75 stretch;
+		}
+	}
+
+	.scroll-content {
+		font-family: "Comic Sans MS", cursive, serif;
+		overflow: hidden;
+		padding: 6% 12%;
+
+		.quote {
+			font-style: italic;
+		}
+
+		a,
+		a:link,
+		a:visited,
+		a:hover {
+			color: #000000;
+		}
+
+		a:hover {
+			text-decoration: none;
+		}
+
+		// TODO: random oriented pages, transform scale is hard on performance though
+		.page {
+			background: url("../images/old_page_cut.jpg");
+			// background-image: url(../images/old_page_cut.svg?1503741235); // wanted to merge with edges with all the different perspectives
+			height: 1598px;
+			left: 0;
+			position: absolute;
+			width: 1000px;
+			z-index: -1;
+		}
+
+		.page.type-1 {
+			top: 0;
+		}
+
+		.page.type-2 {
+			transform: scaleY(-1);
+			top: 1568px;
+		}
+	}
+
+	.scroll-footer,
+	.scroll-bottom {
+		animation-delay: 1.5s;
+		animation-duration: 1.25s;
+		animation-fill-mode: forwards;
+		animation-iteration-count: 1;
+		animation-name: open-scroll;
+		animation-timing-function: ease-out;
+	}
+
+	.scroll-footer {
+		height: 100%;
+		margin-top: -$scroll-handle-height-portrait;
+		top: 2 * $scroll-handle-height-portrait;
+		z-index: 1;
+
+		@include media("landscape") {
+			margin-top: -(2 * $padding + $scroll-handle-height-landscape);
+			margin-bottom: -($padding + $scroll-handle-height-landscape);
+			top: $padding + 2 * $scroll-handle-height-landscape;
+		}
+
+		.scroll-bottom {
+			animation-name: roll-scroll;
+			height: $scroll-handle-height-portrait;
+			z-index: 2;
+
+			@include media("landscape") {
+				height: $scroll-handle-height-landscape;
+			}
+
+			.shadow {
+				// Permalink - use to edit and share this gradient:
+				// http://colorzilla.com/gradient-editor/#ffffff+25,000000+100&0+6,0.6+22,0.45+37,0+50,0.7+100
+				background: linear-gradient(to bottom,
+					rgba(255,255,255,0) 6%,
+					rgba(255,255,255,0.6) 22%,
+					rgba(255,255,255,0.57) 25%,
+					rgba(214,214,214,0.45) 37%,
+					rgba(170,170,170,0) 50%,
+					rgba(0,0,0,0.7) 100%
+				); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+				height: 100%;
+			}
+		}
+
+		.scroll-conceal {
+			height: 100%;
+			position: relative;
+			top: -$scroll-corner;
+			z-index: 1;
+		}
+	}
+}
+
+/**************************************/
+/*               FOOTER               */
+/**************************************/
+
+.footer {
+	bottom: 0;
+	display: none;
+	height: auto;
+	line-height: 1.5em;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: 2;
+
+	a {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	img {
+		vertical-align: middle;
+	}
+
+	@include media("landscape") {
+		display: block;
+	}
+}

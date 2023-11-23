@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globe</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+
+
+        *{
+                    background-image: url("https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+                    background-repeat: no-repeat;
+                    background-size: 1500px 1000px;
+                } 
+        
+                 p{
+                    color: white;
+                    margin-left: 91%;
+                    font-size: large;
+        
+                }
+        
+                .earth{
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    width: 600px;
+                    height: 600px;
+                    background-image: url("https://i.pinimg.com/originals/40/be/4d/40be4d81dc0b6e62c4c2f5894efd8fcc.jpg");
+                    background-size: 100%;
+                    border-radius: 50%;
+                    background-size: cover;
+                    box-shadow: -20px -20px 50px 2px #000 inset,0 0 20px 2px #000;
+                    animation: spin 20s linear alternate infinite;
+                    margin-left: 15%;
+                    
+        
+                }
+        
+                @keyframes spin{
+                    100%{background-position:100%;}
+                } 
+        
+                body {
+                    font-family: 'Arial', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                    margin-left: 50%;
+                }
+        
+        
+        
+                .swiper-container {
+                    width: 80%;
+                    max-width: 350px;
+                    height: 450px; /* Set your desired height */
+                    overflow: hidden;
+                    border-radius: 20px;
+                    color: whitesmoke;
+                    background-color: white;
+                }
+        
+                .swiper-slide {
+                    background-color: #fff;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 20px;
+                    padding: 20px;
+                    box-shadow: 0 4px 8px rgba(233, 226, 226, 0.1);
+                    height: 100%; /* Set your desired height */
+                }
+                .swiper-wrapper{
+                    color: white;
+                    background-color: white;
+                }
+        
+            </style>
+</head>
+<body>
+    <div class="earth"></div>
+    <div class="swiper-container" dir="rtl">
+        <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide">Select the era you want to go to</div> -->
+            <div class="swiper-slide year 1700-2000" data-value="1700-2000">1700-2000</div>
+            <div class="swiper-slide year 1400-1700" data-value="1400-1700">1400-1700</div>
+            <div class="swiper-slide year" data-value="1100-1400">1100-1400</div>
+            <div class="swiper-slide year" data-value="900-1100">900-1100</div>
+            <div class="swiper-slide year" data-value="600-900">600-900</div>
+            <div class="swiper-slide year" data-value="300-600">300-600</div>
+            <!-- <div class="swiper-slide year" data-value="1300-1400">1300-1400</div>
+            <div class="swiper-slide year" data-value="1200-1300">1200-1300</div> -->
+        </div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+    
+
+    <!-- <div id="selectedEra"></div> -->
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            slidesPerView: 2, 
+            centeredSlides: true,
+            spaceBetween: 10,
+            grabCursor: true,
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                hide: false,
+            },
+            on: {
+                slideChange: function () {
+                    var selectedEra = swiper.slides[swiper.activeIndex].dataset.value;
+                    document.getElementById('selectedEra').textContent = selectedEra;
+                }
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var selectElements = document.querySelectorAll(".year");
+            for (let i = 0; i < selectElements.length; i++) {
+                selectElements[i].addEventListener("click", function() {
+                    var selectedEra = selectElements[i].dataset.value;
+
+                    if (selectedEra) {
+                        alert("Taking you on a journey to " + selectedEra);
+                        // Modify the URL as needed based on the selected era
+                        window.location.href = "./trans.html";
+                    }
+                });
+            }
+        });
+
+        // <!-- ... (existing code) -->
+
+
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     var selectElements = document.querySelectorAll(".year");
+    //     for (let i = 0; i < selectElements.length; i++) {
+    //         selectElements[i].addEventListener("click", function() {
+    //             var selectedYearRange = selectElements[i].dataset.value;
+
+    //             if (selectedYearRange) {
+    //                 var [startYear, endYear] = selectedYearRange.split('-').map(Number);
+
+    //                 // Make an asynchronous request to the server with the selected year
+    //                 fetch(`/countryinfo?countryId=India&year=${selectedYearRange}`)
+    //                     .then(response => {
+    //                         if (!response.ok) {
+    //                             throw new Error(`HTTP error! Status: ${response.status}`);
+    //                         }
+    //                         return response.text();
+    //                     })
+    //                     .then(data => {
+    //                         // Display the response data in the alert or update the DOM as needed
+    //                         alert(data);
+    //                     })
+    //                     .catch(error => {
+    //                         console.error('Error:', error);
+    //                     });
+    //             }
+    //         });
+    //     }
+
+    //     // Add click event listeners to world map countries
+    //     var countries = document.querySelectorAll('.worldmap-country');
+
+    //     countries.forEach(function(country) {
+    //         country.addEventListener('click', function() {
+    //             var countryId = country.dataset.countryId;
+    //             // Modify the URL as needed based on the selected country
+    //             window.location.href = `/countryinfo?countryId=${countryId}`;
+    //         });
+    //     });
+    // });
+
+
+
+    </script>
+</body>
+</html>

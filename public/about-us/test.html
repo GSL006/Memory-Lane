@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+  <style>
+    body {
+        scrollbar-color: dark;
+        background-image: url('./background.png');
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+    h2 {
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 2rem;
+    }
+    #container>div {
+        /* display : flex;
+        justify-content: center;
+        align-items: center; */
+        text-align: center;
+    }
+
+    #container {
+        width: 100%;
+        /* margin: 0% 0% 0% 30%; */
+    }
+
+    .authors {
+        margin : 0px 5%;
+    }
+    .authors>h3 {
+        padding-left: 30%;
+    }
+  </style>
+</head>
+<body>
+    <h2>How It Works!</h2>
+    <div id="container"></div>
+    <script type="text/babel">
+        var destination = document.querySelector("#container");
+
+        class Header extends React.Component {
+            render() {
+                var headingStyle = {
+                    fontFamily: "Sans",
+                    fontSize : "1.5rem",
+                    marginBottom : "30px",
+                }
+                return (<h1 style={headingStyle}>{this.props.title} </h1>)
+            }
+        }
+
+        class Content extends React.Component {
+            render() {
+                var contentStyle = {
+                    fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;",
+                    fontSize : "1rem",  
+                }
+                return(<p style={contentStyle}> {this.props.cont} </p>)
+            }
+        }
+        
+        class Person extends React.Component {
+            render() {
+                var personStyle = {
+                    // display: "inline-block",
+                    margin : "10px",
+                    height: "300px",
+                    width: "300px",
+                    backgroundColor : "pink",
+                    borderRadius : "50%"
+                }
+
+                var nameStyle = {
+                    // display: "inline-block",
+                    fontFamily: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif",
+                    fontSize : "1.5rem",
+                    marginLeft: "8%",
+                }
+                return (<div className="authors"><div style={personStyle}></div><h3 style={nameStyle}>{this.props.name}</h3></div>)
+            }
+        }
+
+        class Image extends React.Component {
+            render() {
+                var imageStyle = {
+                    borderRadius: "5%",
+                    width: "40%",
+                    marginBottom :"75px"
+                }
+                return (<img src={this.props.source} style={imageStyle} alt={this.props.alt}/>);
+            }
+        }
+
+        ReactDOM.render(<div>
+            <Header title="STEP 1: CREATE YOUR ACCOUNT"/>
+            <Content cont="Incase you have an acccount, Skip to Step 2" />
+            <Image source="./Create.jpeg" alt="Register Image"/>
+            <Header title="STEP 2: LOG INTO YOUR ACCOUNT"/>
+            <Image source="./Login.jpeg" alt="Register Image"/>
+            <Header title="STEP 3: SELECT YOUR COUNTRY AND TIME PERIOD"/>
+            <Image source="./Globe.jpeg" alt="Register Image"/>
+            <Header title="STEP 4: FEED YOUR CURIOSITY OF THE PAST"/>
+            <Image source="./Country.jpeg" alt="Register Image"/>
+            </div>, destination);
+        
+
+    </script>
+</body>
+</html>
