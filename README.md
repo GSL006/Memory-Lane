@@ -1,6 +1,6 @@
 # Memory-Lane
 
- Welcome to Memory Lane, where we embark on a journey through the annals of history, providing you with a unique and immersive experience of major historical events that have shaped our world.
+ Welcome to Memory Lane, where we embark on a journey through the cannals of history, providing you with a unique and immersive experience of major historical events that have shaped our world.
  
 
 # Compilation and Running
